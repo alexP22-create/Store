@@ -1,0 +1,30 @@
+listcurrencies
+addcurrency GBP £ 1.10
+loadcsv amazon_co-ecommerce_cleaned.csv
+getstorecurrency
+savestore
+setstorecurrency GBP
+getstorecurrency
+listproducts
+loadstore
+listproducts
+addcurrency RON l 0.23
+listcurrencies
+setstorecurrency RON
+getstorecurrency
+setstorecurrency EUR
+getstorecurrency
+listproducts
+savecsv store_prices_eur5.csv
+addcurrency PUR & 1.20
+listcurrencies
+setstorecurrency GBP
+savecsv store_prices_eur6.csv
+setstorecurrency GBP
+addcurrency STA * 1.05
+listcurrencies
+listmanufacturers
+addiscount PERCENTAGE 10 "10% Black Friday"
+addiscount PERCENTAGE 15 "15% Black Friday"
+listproductsbymanufacturarer Hornby
+quit
