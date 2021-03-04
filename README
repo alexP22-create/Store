@@ -2,6 +2,14 @@ POSTOLACHE ALEXANDRU-GABRIEL
 
 				README
 
+	amazon_co-ecommerce_cleaned.csv is the input file. The
+products are being read from this file by giving the program a
+specific command.
+	rulare1.txt, rulare2.txt, rulare3.txt, rulare4.txt are files
+which contain commands used for testing.
+	output1.txt, output2.txt, output3.txt, output4.txt are files
+which contain the respective outputs
+
 Obs:
 	-afisarea exceptiilor se face la stderr, de aceea apar
 in fisierele cu outputuri
