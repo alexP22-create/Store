@@ -1,0 +1,11 @@
+getstorecurrency
+addcurrency GBP £ 1.10
+loadcsv amazon_co-ecommerce_cleaned.csv
+savecsv store_prices_eur1.csv
+setstorecurrency GBP
+updateparity GBP 1.09
+listcurrencies
+listproducts
+showproduct eac7efa5dbd3d667f26eb3d3ab504464
+listmanufacturers
+quit

@@ -1,0 +1,134 @@
+POSTOLACHE ALEXANDRU-GABRIEL
+
+				README
+
+Obs:
+	-afisarea exceptiilor se face la stderr, de aceea apar
+in fisierele cu outputuri
+	-programul meu foloseste la citire CSVReader din opencsv,
+de aceea citirea produselor se va face doar din versiunea CLEAN
+	-am implementat 2 bonusuri: Cel cu CSVReader, CSVWriter si
+pe cel cu loadStore, saveStore.
+
+Voi explica codul pe clase si metode:
+
+Clasa Main:
+	-findCurrency imi gaseste currenciul cu numele dorit
+in lista de currenciuri si il returneaza daca exista
+	-findCurrencySymbol, la fel ca mai sus doar ca o sa
+caute dupa simbol
+	-listCurrencies listeaza toate curenccyurile adaugate
+pana in acel moment
+	-loadCommand, citeste un fisier csv si ii stocheaza
+datele intr-un vector de produse. De asemenea folosesc
+un stringbuilder ca sa retin simbolul currencyului in care
+au fost date preturile in fisier, pentru a putea schimba dupa 
+la euro, care este moneda curenta din store la inceput. 
+Fisierul dat ca exemplu de input avea preturile in lire.
+	-calculateTotal, calculeaza pretul total al produselor
+cerute. Primeste un vector de id-uri si pt fiecare cauta
+produsul pe care-l adauga in array, si apoi afiseaza
+rezultatul functiei calculateTotal.
+	-addDiscountCommand, creaza discountul si il adauga
+in store.
+	-applyDiscountCommand, se cauta discountul si dupa ce
+se gaseste se aplica pentru tot store-ul.
+	-takeCommands, este functia care citeste de la stdin
+comenzile pe care le indeplineste
+	-main, in care se creaza instanta unica de store creata
+cu designPatternul Singleton, se initializeaza lista de
+currency-uri care il va avea pe EUR si array-urile de
+Manufacturer si Discount din clasa Store. Lista de currency-uri
+o pastrez in main.
+
+Clasa Product:
+	-getPriceAllProducts, returneaza pretul tuturor produselor
+de acel tip de pe store.
+	-Constructorul clasei Product foloseste design pattern-ul
+Builder, acesta primeste ca parametru un productBuilder
+care seteaza toate campurile obiectului Product. Toate
+campurile clasei Product sunt necesare, am eliminat campul
+Discount care ar fi fost considerat optional, deoarece la
+crearea produsului nu ar fi fost niciodata setat caci nu
+apare in fisierul de input.
+	-toString returneaza informatiile despre obiectul de tipul
+Product, dar va rotunji pretul ca sa apara doar 2 zecimale.
+	Clasa Statica ProductBuilder ajuta la implementarea
+design pattern-ului. Acest obiect are aceleasi campuri ca
+obiectul Product.
+
+Clasa Store:
+	-initializeManufacturersDiscounts, intitializeaza
+array-urile de manufactori si discounturi cu nr maxim de
+elemente posibile. Asa ca la parcurgeri se vor parcurge
+pana elementul curent e null.
+	-metoda Instance este folosita la implementarea design
+patternului Singleton. Mereu va returna obiectul unic de tip
+store, iar cand acesta nu exista il va creea.
+	-initializeManufacturersDiscounts, initializeaza array-urile
+de obiecte cu nr lor maxim de elemente pe care l pot avea.
+	-addManufacturer care adauga un Manufacturer in vectorul
+manufacturers pe prima pozitie goala. In ac timp daca a gasit
+unul cu ac nume arunca exceptia DuplicateManufacturerException.
+	-setManufacturers, primeste ca parametru numele manufacto
+rului ce se doreste cautat. Daca a fost deja creat, se va
+returna obiectul gasit, iar daca nu se va crea unul care
+se va adauga la array si la final va fi returnat si el.
+De aceea exceptia DuplicateManufacturerException nu va avea
+loc niciodata.
+	-listManufacturers, afiseaza numele tuturor manufac-
+torilor
+	-changeCurrency schimba currency-ul curent de pe store.
+Mai intai verifia daca exista in lista de currency-uri si
+daca nu se va arunca o exceptie. Dupa converteste toate
+preturile dupa noua moneda si o seteaza ca currency curent.
+	-applyChangeCurreny, aplica metoda de mai sus si prinde
+exceptia.
+	-findProduct, gaseste un produs dupa id si il returneaza
+daca exista, daca nu returneaza null.
+	-createProduct, creaza un obiect de tip produs pe care il
+returneaza.
+	-addProduct, adauga un produs in array si daca exista unul
+cu acelasi id atunci se arunca exceptia.
+	-readCSV, citeste dintr-un fisier CSV datele pentru produse
+Pt fiecare linie de inf citite se creeaza produsul si se adauga
+in array.
+	-saveCSV, scrie toate informatiile despre produse intr-un
+fisier CSV in ac format ca cel din care s-au citit. Pretul se
+rotunjeste.
+	-createDiscount, creeaz un ob de tip Discount aplicand 
+constructorul.
+	-addDiscount, adauga un discount in array.
+	-validDiscount, ne returneaza true daca discountul exista
+(adica se gaseste in array), altfel returneaza false. 
+	-applyDiscount, aplica discountul pe toate produsele din
+store. Daca nu este valid se arunca exceptia, altfel se recal-
+culeaza pretul pentru fiecare produs, aplicandu-se discountul
+Daca pretul devine negativ se arunca exceptia. Dupa ce s-a
+aplicat discountul tuturor produselor aplic serAsAppliedNow.
+	-findDiscount, cauta discountul in lista de discounturi
+si returneaza,
+	-getProductsByManufacturer, intoarce un array cu toate
+produsele care au manufactorul primit ca parametru.
+	-calculateTotal, calculeaza preturile tuturor produselor
+din array-ul dat. Tine cont de nr de obiecte din stoc.
+Rezultatul se rotunjeste la 3 zecimale.
+	-showProduct, cauta un produs dupa id si ii afiseaza
+informatiile.
+	-saveStore, scriem ubiectul store serializabil cu 
+writeObject. Ne asiguram ca este serializabil implementand
+Serializable la fiecare clasa de obiect care intra in
+componenta sa, si le setam fiecarei aceste clase cate un id.
+	-loadStore, incarca in instanta unica de store obiectul
+salvat in fisierul binar.
+
+Clasa Discount:
+	Contine get-eri, set-eri si metoda setAsAppliedNow, care
+seteaza campul referitor la timp al discountului.
+
+Clasa Currency:
+	Contine get-eri, set-eri, constructori.
+
+Proiectul mai continele clasele cu declararile exceptiilor si
+clasa enum.
+

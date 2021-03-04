@@ -1,0 +1,15 @@
+addcurrency RON l 4.70
+addcurrency GBP £ 1.10
+loadcsv amazon_co-ecommerce_cleaned.csv
+savecsv store_prices_eur2.csv
+setstorecurrency GBP
+savecsv store_prices_eur3.csv
+listcurrencies
+listproducts
+showproduct eac7efa5dbd3d667f26eb3d3ab504464
+addiscount PERCENTAGE 30 "30% Black Friday"
+addiscount FIXED 15 "-15 RON Newsletter"
+listdiscounts
+applydiscount PERCENTAGE 30
+listproducts
+exit

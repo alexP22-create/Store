@@ -1,0 +1,20 @@
+addcurrency GBP £ 1.10
+loadcsv amazon_co-ecommerce_cleaned.csv
+savecsv store_prices_eur4.csv
+addcurrency RON l 0.23
+setstorecurrency RON
+addiscount FIXED 0.5 "-0.5 RON Newsletter"
+addiscount PERCENTAGE 80 "80% Black Friday"
+listdiscounts
+addiscount FIXED 1 "-1 RON Newsletter"
+listdiscounts
+calculatetotal eac7efa5dbd3d667f26eb3d3ab504464 e12b92dbb8eaee78b22965d2a9bbbd9f 03a35de3f7af9814978e6de645cb8ffa 81b3ad5c07a31fa67e4dc8643afa3275
+loadcsv store_prices_eur4.csv
+showproduct 81b3ad5c07a31fa67e4dc8643afa3275
+setstorecurrency GBP
+getstorecurrency
+listdiscounts
+listmanufacturers
+addcurrency PES P 1.48
+savestore
+exit
